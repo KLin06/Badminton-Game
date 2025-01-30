@@ -141,7 +141,7 @@ public class CSBadmintonGame extends JPanel implements Runnable, KeyListener, Mo
     public static double timeToBeat = 0; // how long does it take to beat bot 7
 
     // other variables
-    public static String filePath = ""; // path
+    public static String filePath = "Pictures/"; // path
     // if only relative path is necessary, remove this :)
 
     public CSBadmintonGame() { // change JPanel Settings
@@ -983,19 +983,19 @@ public class CSBadmintonGame extends JPanel implements Runnable, KeyListener, Mo
 
     // Text File Streaming Methods
     public static void levelStateFileCollector() throws IOException {
-        Scanner in = new Scanner(new File(filePath + "progress.txt")); // level states
+        Scanner in = new Scanner(new File("Textfiles/progress.txt")); // level states
         levelUnlocked = in.nextInt();
         in.close();
     }
 
     public static void levelStateFileChanger() throws IOException {
-        PrintWriter out = new PrintWriter(new FileWriter(filePath + "progress.txt"));
+        PrintWriter out = new PrintWriter(new FileWriter("Textfiles/progress.txt"));
         out.println(levelUnlocked);
         out.close();
     }
 
     public static void highScoreCollector() throws IOException {
-        Scanner in = new Scanner(new File(filePath + "highScore.txt")); // level states
+        Scanner in = new Scanner(new File("textFiles/highScore.txt")); // level states
         highScores[0] = in.nextInt(); // fastest smash
         highScores[1] = in.nextInt(); // longest rally
         highScores[2] = in.nextInt(); // total birds hit
@@ -1003,7 +1003,7 @@ public class CSBadmintonGame extends JPanel implements Runnable, KeyListener, Mo
     }
 
     public static void highScoreChanger() throws IOException { // putting the high score in the text file
-        PrintWriter out = new PrintWriter(new FileWriter(filePath + "highScore.txt"));
+        PrintWriter out = new PrintWriter(new FileWriter("textFiles/highScore.txt"));
         for (int i = 0; i < 3; i++) {
             if (highScores[i] < currentHighScores[i]) {
                 out.print(currentHighScores[i] + " ");
@@ -1018,7 +1018,7 @@ public class CSBadmintonGame extends JPanel implements Runnable, KeyListener, Mo
     public static void playHit() throws IOException {
         try {
             // hit sound
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(filePath + "hitsound.wav"));
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("Sounds/hitsound.wav"));
             Clip hitSound = AudioSystem.getClip();
             hitSound.open(audioIn);
             hitSound.start();
@@ -1031,7 +1031,7 @@ public class CSBadmintonGame extends JPanel implements Runnable, KeyListener, Mo
     public static void playSmash() throws IOException {
         try {
             // smash sound
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(filePath + "smashsound.wav"));
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("Sounds/smashsound.wav"));
             Clip smashSound = AudioSystem.getClip();
             smashSound.open(audioIn);
             smashSound.start();
@@ -1045,7 +1045,7 @@ public class CSBadmintonGame extends JPanel implements Runnable, KeyListener, Mo
         if (gameState == 3) {
             try {
                 // smash sound
-                AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(filePath + "crowdsound.wav"));
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("Sounds/crowdsound.wav"));
                 Clip crowdSound = AudioSystem.getClip();
                 crowdSound.open(audioIn);
                 crowdSound.start();
